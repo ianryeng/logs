@@ -1,0 +1,23 @@
+Machine Start G-Code
+
+
+filament_names! PURGE_VOLUMES=!purge_volumes!
+MMU_START_CHECK
+
+;M190 S[bed_temperature_initial_layer_single]
+;M109 S[nozzle_temperature_initial_layer]
+PRINT_START EXTRUDER=[nozzle_temperature_initial_layer] BED=[bed_temperature_initial_layer_single]
+
+MMU_START_LOAD_INITIAL_TOOL
+; Optionally add YOUR additional start logic to run just prior to start
+SET_PRINT_STATS_INFO TOTAL_LAYER={total_layer_count} ; For pause at layer functionality and better print stats
+;VORON_PURGE
+
+
+
+Machine end G-Code
+
+;SET_FILAMENT_SENSOR SENSOR=filament_sensor ENABLE=0
+MMU_END
+; Enter YOUR print end macro call here
+PRINT_END
